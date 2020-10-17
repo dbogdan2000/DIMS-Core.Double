@@ -1,0 +1,71 @@
+// https://nlog-project.org/config/?tab=layout-renderers&search=package:nlog.web.aspnetcore - config description
+// https://nlog-project.org/config/?tab=layout-renderers - layout variables
+{
+    "NLog": {
+        "ThrowConfigExceptions": true,
+        "IncludeScopes": false,
+        "Targets": {
+            "Async": true,
+            "LogFile": {
+                "Type": "File",
+                "FileName": "${aspnet-appbasepath}/logs/${shortdate}.log",
+                "Layout": "${longdate} ${level:uppercase=true} ${logger} ${message}\r\n\t${exception:format=tostring}"
+            },
+            "LogConsole": {
+                "Type": "ColoredConsole",
+                "Layout": "${date} ${level:uppercase=true} ${logger} ${message}\r\n\t${exception:format=tostring}",
+                "UseDefaultRowHighlightingRules": false,
+                "WordHighlightingRules": [
+                    {
+                        "ForegroundColor": "Gray",
+                        "Text": "TRACE",
+                        "IgnoreCase": false,
+                        "WholeWords": true
+                    },
+                    {
+                        "ForegroundColor": "White",
+                        "Text": "DEBUG",
+                        "WholeWords": true,
+                        "IgnoreCase": false
+                    },
+                    {
+                        "ForegroundColor": "Green",
+                        "Text": "INFO",
+                        "WholeWords": true,
+                        "IgnoreCase": false
+                    },
+                    {
+                        "ForegroundColor": "Yellow",
+                        "Text": "WARN",
+                        "WholeWords": true,
+                        "IgnoreCase": false
+                    },
+                    {
+                        "ForegroundColor": "Red",
+                        "Text": "ERROR",
+                        "WholeWords": true,
+                        "IgnoreCase": false
+                    },
+                    {
+                        "ForegroundColor": "DarkRed",
+                        "Text": "FATAL",
+                        "WholeWords": true,
+                        "IgnoreCase": false
+                    }
+                ]
+            }
+        },
+        "Rules": [
+            {
+                "Logger": "*",
+                "MinLevel": "Info",
+                "WriteTo": "LogFile"
+            },
+            {
+                "Logger": "*",
+                "MinLevel": "Debug",
+                "WriteTo": "LogConsole"
+            }
+        ]
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "SmtpSettings": {
+        "Server": "smtp.gmail.com",
+        "UserName": "kborovik.smtp@gmail.com",
+        "Password": "7408KB:ptms28",
+        "Port": 465,
+        "EnableSsl": true
+    }
+}

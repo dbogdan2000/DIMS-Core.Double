@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DIMS_Core.BusinessLayer</RootNamespace>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="9.0.0" />
+	  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DIMS-Core.DataAccessLayer\DIMS-Core.DataAccessLayer.csproj" />
+	  <ProjectReference Include="..\DIMS-Core.Identity\DIMS-Core.Identity.csproj" />
+	  <ProjectReference Include="..\DIMS-Core.Logger\DIMS-Core.Logger.csproj" />
+	  <ProjectReference Include="..\DIMS-Core.Mailer\DIMS-Core.Mailer.csproj" />
+	</ItemGroup>
+
+</Project>
