@@ -1,0 +1,9 @@
+﻿CREATE FUNCTION GetFullAge
+(
+	@BirthDate Date
+)
+RETURNS INT
+AS
+BEGIN
+	RETURN DATEDIFF(hour, @BirthDate, SYSDATETIME())/8760;
+END

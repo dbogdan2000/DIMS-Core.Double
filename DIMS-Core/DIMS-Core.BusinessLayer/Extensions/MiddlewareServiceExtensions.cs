@@ -15,7 +15,6 @@ namespace DIMS_Core.BusinessLayer.Extensions
     {
         public static IServiceCollection AddDependencyInjections(this IServiceCollection services)
         {
-            services.AddTransient<ISampleService, SampleService>();
             services.AddTransient<IUserService, UserService>();
 
             services.AddDatabaseDependencies()
@@ -38,10 +37,10 @@ namespace DIMS_Core.BusinessLayer.Extensions
 
         public static IServiceCollection AddCustomSolutionConfigs(this IServiceCollection services, IConfiguration configuration, params Assembly[] otherMapperAssemblies)
         {
-            services.AddDependencyInjections()
-                .AddDatabaseContext(configuration)
-                .AddAutomapperProfiles(otherMapperAssemblies)
-                .AddIdentityContext();
+            //services.AddDependencyInjections()
+            //    .AddDatabaseContext(configuration)
+            //    .AddAutomapperProfiles(otherMapperAssemblies)
+            //    .AddIdentityContext();
 
             return services;
         }

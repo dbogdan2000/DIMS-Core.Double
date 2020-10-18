@@ -1,26 +1,22 @@
-﻿using DIMS_Core.DataAccessLayer.Context;
-using DIMS_Core.DataAccessLayer.Interfaces;
+﻿using DIMS_Core.DataAccessLayer.Interfaces;
 using System;
 using System.Threading.Tasks;
 
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
-    internal class UnitOfWork : IUnitOfWork
+    internal class UnitOfWork //: IUnitOfWork
     {
-        private readonly DIMSCoreContext _context;
-        private ISampleRepository _sampleRepository;
+        //private readonly DIMSCoreContext _context;
 
-        public ISampleRepository SampleRepository => _sampleRepository ??= new SampleRepository(_context);
+        //public UnitOfWork(DIMSCoreContext context)
+        //{
+        //    _context = context;
+        //}
 
-        public UnitOfWork(DIMSCoreContext context)
-        {
-            _context = context;
-        }
-
-        public Task SaveAsync()
-        {
-            return _context.SaveChangesAsync();
-        }
+        //public Task SaveAsync()
+        //{
+        //    return _context.SaveChangesAsync();
+        //}
 
         #region Disposable
 
@@ -32,7 +28,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             {
                 if (disposing)
                 {
-                    _context.Dispose();
+                    //_context.Dispose();
                 }
 
                 disposed = true;

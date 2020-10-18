@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using DIMS_Core.Common.Extensions;
+﻿using DIMS_Core.Common.Extensions;
 using DIMS_Core.Mailer.Services;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace DIMS_Core.Tests
 {
@@ -23,8 +20,8 @@ namespace DIMS_Core.Tests
             null)] // TODO: here need to write your email for testing.
         public async Task SendMessageAsync(string subject, string body, string email)
         {
-            if (subject.IsNullOrWhiteSpace() 
-                || email.IsNullOrWhiteSpace() 
+            if (subject.IsNullOrWhiteSpace()
+                || email.IsNullOrWhiteSpace()
                 || email.IsNullOrWhiteSpace())
             {
                 Assert.Fail("You didn't set email/body/subject.");

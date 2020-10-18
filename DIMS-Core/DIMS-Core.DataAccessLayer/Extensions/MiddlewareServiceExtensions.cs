@@ -1,5 +1,4 @@
-﻿using DIMS_Core.DataAccessLayer.Context;
-using DIMS_Core.DataAccessLayer.Interfaces;
+﻿using DIMS_Core.DataAccessLayer.Interfaces;
 using DIMS_Core.DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,20 +10,19 @@ namespace DIMS_Core.DataAccessLayer.Extensions
     {
         public static IServiceCollection AddDatabaseDependencies(this IServiceCollection services)
         {
-            services.AddTransient<ISampleRepository, SampleRepository>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            //services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             return services;
         }
 
-        public static IServiceCollection AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddDbContext<DIMSCoreContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("DIMSDatabase"));
-            });
+        //public static IServiceCollection AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
+        //{
+        //    services.AddDbContext<DIMSCoreContext>(options =>
+        //    {
+        //        options.UseSqlServer(configuration.GetConnectionString("DIMSDatabase"));
+        //    });
 
-            return services;
-        }
+        //    return services;
+        //}
     }
 }
