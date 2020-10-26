@@ -60,7 +60,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             {
                 if (disposing)
                 {
-                    databaseContext.Dispose();
+                    _context.Dispose();
                 }
 
                 disposedValue = true;
