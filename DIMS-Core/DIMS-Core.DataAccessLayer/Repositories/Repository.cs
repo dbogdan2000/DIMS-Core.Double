@@ -12,63 +12,43 @@ namespace DIMS_Core.DataAccessLayer.Repositories
     /// <typeparam name="TEntity"></typeparam>
     public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext databaseContext;
-        protected readonly DbSet<TEntity> currentSet;
+        private readonly DbContext _context;
+        protected readonly DbSet<TEntity> _set;
 
         public Repository(DbContext context)
         {
-            databaseContext = context;
-            currentSet = context.Set<TEntity>();
+            _context = context;
+            _set = context.Set<TEntity>();
         }
 
-        public async Task CreateAsync(TEntity entity)
+        public async Task Create(TEntity entity) => await _set.AddAsync(entity);
+
+        public async Task Delete(int id)
         {
-            if (entity is null)
-            {
-                return;
-            }
 
-            await currentSet.AddAsync(entity);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            if (id <= 0)
-            {
-                return;
-            }
-
-            var entity = await GetByIdAsync(id);
+            var entity = await GetById(id);
 
             if (entity is null)
             {
                 return;
             }
 
-            currentSet.Remove(entity);
+            _set.Remove(entity);
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return currentSet.AsNoTracking();
+            return _set.AsNoTracking();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            if (id <= 0)
-            {
-                return null;
-            }
-
-            var entity = await currentSet.FindAsync(id);
+            var entity = await _set.FindAsync(id);
 
             return entity;
         }
 
-        public void Update(TEntity entity)
-        {
-            databaseContext.Entry(entity).State = EntityState.Modified;
-        }
+        public void Update(TEntity entity) => _context.Entry(entity).State = EntityState.Modified;
 
         #region Disposable
 
