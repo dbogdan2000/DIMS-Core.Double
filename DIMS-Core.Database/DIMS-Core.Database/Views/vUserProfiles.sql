@@ -14,4 +14,4 @@
         UserProfiles.Skype,
         UserProfiles.StartDate 
         FROM [UserProfiles] INNER JOIN [Directions]
-        ON UserProfiles.DirectionId = Directions.Id
+        ON UserProfiles.DirectionId = Directions.DirectionId
