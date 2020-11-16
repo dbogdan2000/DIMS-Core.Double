@@ -19,14 +19,14 @@ namespace DIMS_Core.DataAccessLayer.Models
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<VUserProfile> VUserProfiles { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=DIMSCore;User Id=sa;Password=Barrow2013");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=DIMSCore;User Id=sa;Password=Barrow2013");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

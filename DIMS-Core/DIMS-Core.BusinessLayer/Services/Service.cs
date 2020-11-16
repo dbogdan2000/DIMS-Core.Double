@@ -5,7 +5,7 @@ using DIMS_Core.DataAccessLayer.Interfaces;
 
 namespace DIMS_Core.BusinessLayer.Services
 {
-    public class Service : IService
+    public abstract class Service : IService
     {
         protected readonly IUnitOfWork _unitOfWork;
 

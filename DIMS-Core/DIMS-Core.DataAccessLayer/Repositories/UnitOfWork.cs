@@ -26,13 +26,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             _context = context;
         }
 
-        public Task SaveAsync()
-        {
-            return _context.SaveChangesAsync();
-        }
-
         #region Disposable
-
         private bool disposed;
 
         protected virtual void Dispose(bool disposing)
@@ -58,7 +52,6 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
-
         #endregion Disposable
     }
 }

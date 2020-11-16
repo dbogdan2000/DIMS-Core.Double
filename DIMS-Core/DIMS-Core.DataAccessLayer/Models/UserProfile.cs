@@ -19,7 +19,6 @@ namespace DIMS_Core.DataAccessLayer.Models
         public string Skype { get; set; }
         public string Email { get; set; }
         public string MobilePhone { get; set; }
-
         public virtual Direction Direction { get; set; }
     }
 }

@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseNETCoreGenerator>true</UseNETCoreGenerator>
     <RootNamespace>DIMS_Core.DataAccessLayer</RootNamespace>
+    <UserSecretsId>a976e32f-9ee7-491c-a12d-c0d658c5292c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

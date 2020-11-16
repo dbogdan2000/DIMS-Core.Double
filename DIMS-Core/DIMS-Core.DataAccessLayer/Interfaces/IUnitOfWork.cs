@@ -8,8 +8,6 @@ namespace DIMS_Core.DataAccessLayer.Interfaces
     {
         IRepository<UserProfile> UserProfileRepository { get; }
         IRepository<Direction> DirectionRepository { get; }
-        IReadOnlyRepository<VUserProfile> VUserProfileRepository {get;}
-
-        Task SaveAsync();
+        IReadOnlyRepository<VUserProfile> VUserProfileRepository { get; }
     }
 }
