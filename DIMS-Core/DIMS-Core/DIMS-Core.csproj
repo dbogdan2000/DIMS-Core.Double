@@ -46,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MappingProfiles\" />
     <Folder Include="wwwroot\bundle\js\" />
     <Folder Include="wwwroot\bundle\css\" />
   </ItemGroup>
