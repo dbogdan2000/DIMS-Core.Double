@@ -104,9 +104,9 @@ namespace DIMS_Core.Controllers
             return View();
         }
 
-        [HttpDelete("delete/{id:int}")]
+        [HttpPost("delete/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, UserProfileViewModel userProfileViewModel)
+        public async Task<IActionResult> DeleteUser(int id)
         {
             await _userProfileService.Delete(id);
 
