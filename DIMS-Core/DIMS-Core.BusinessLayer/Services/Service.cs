@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
+using DIMS_Core.Common.DI;
 using DIMS_Core.DataAccessLayer.Interfaces;
 
 namespace DIMS_Core.BusinessLayer.Services

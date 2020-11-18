@@ -33,18 +33,18 @@ namespace DIMS_Core.BusinessLayer.Services
         public async Task<UserProfileModel> Update(UserProfileModel userProfile)
         {
             var userProfileEntity = await _unitOfWork.UserProfileRepository.GetById(userProfile.UserId);
-            var userProfileUpdatedEntity = await _unitOfWork.UserProfileRepository.Update(_mapper.Map(userProfile, userProfileEntity));
+            var updatedUserProfileEntity = await _unitOfWork.UserProfileRepository.Update(_mapper.Map(userProfile, userProfileEntity));
 
-            return _mapper.Map<UserProfileModel>(userProfileUpdatedEntity);
+            return _mapper.Map<UserProfileModel>(updatedUserProfileEntity);
         }
 
         public async Task<UserProfileModel> Create(UserProfileModel userProfileModel)
         {
             var userProfile = _mapper.Map<UserProfile>(userProfileModel);
 
-            var createdUserEntity = await _unitOfWork.UserProfileRepository.Create(userProfile);
+            var createdUserProfileEntity = await _unitOfWork.UserProfileRepository.Create(userProfile);
 
-            return _mapper.Map<UserProfileModel>(createdUserEntity);
+            return _mapper.Map<UserProfileModel>(createdUserProfileEntity);
         }
 
         public async Task Delete(int id)

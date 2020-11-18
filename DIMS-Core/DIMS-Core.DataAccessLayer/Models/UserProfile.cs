@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DIMS_Core.DataAccessLayer.Models
 {
@@ -19,6 +18,7 @@ namespace DIMS_Core.DataAccessLayer.Models
         public string Skype { get; set; }
         public string Email { get; set; }
         public string MobilePhone { get; set; }
+
         public virtual Direction Direction { get; set; }
     }
 }
