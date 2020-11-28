@@ -1,5 +1,6 @@
 {
     "ConnectionStrings": {
         "DIMSDatabase": "Server=(localdb)\\MSSQLLocalDB;Database=DIMSCore;Trusted_Connection=True;"
+        //"DIMSDatabase": "Server=127.0.0.1,1433;Database=DIMSCore;User Id=sa;Password=Barrow2013"
     }
 }

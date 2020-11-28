@@ -51,5 +51,27 @@ namespace DIMS_Core.BusinessLayer.Services
         {
             await _unitOfWork.DirectionRepository.Delete(id);
         }
+
+        /// <summary>
+        /// This method check models equality by operator == overloading
+        /// </summary>
+        /// <param name="directionModel1"></param>
+        /// <param name="directionModel2"></param>
+        /// <returns></returns>
+        public bool Equal(DirectionModel directionModel1, DirectionModel directionModel2)
+        {
+            return directionModel1 == directionModel2;
+        }
+
+        /// <summary>
+        /// This method check models inequality by operator != overloading
+        /// </summary>
+        /// <param name="directionModel1"></param>
+        /// <param name="directionModel2"></param>
+        /// <returns></returns>
+        public bool NotEqual(DirectionModel directionModel1, DirectionModel directionModel2)
+        {
+            return directionModel1 != directionModel2;
+        }
     }
 }

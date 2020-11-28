@@ -1,6 +1,7 @@
 using DIMS_Core.BusinessLayer.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +20,11 @@ namespace DIMS_Core
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //var builder = new SqlConnectionStringBuilder(
+            //        Configuration.GetConnectionString("DIMSDatabase"));
+            //builder.Password = Configuration["DB_PASS"];
+            //builder.UserID = Configuration["DB_USERID"];
+
             services.AddControllersWithViews();
 
             services.AddCustomSolutionConfigs(Configuration, Assembly.GetExecutingAssembly());

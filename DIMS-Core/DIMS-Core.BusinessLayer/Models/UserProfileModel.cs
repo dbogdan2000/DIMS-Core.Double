@@ -30,5 +30,12 @@ namespace DIMS_Core.BusinessLayer.Models
         public string Email { get; set; }
 
         public string MobilePhone { get; set; }
+
+        // TODO: Task # 14
+        // You have to implement operator == by comparing First and Last names
+
+
+        // TODO: Task # 15
+        // You have to implement operator != by comparing First and Last names
     }
 }
