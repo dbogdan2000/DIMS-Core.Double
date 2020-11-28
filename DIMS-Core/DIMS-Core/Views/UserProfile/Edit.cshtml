@@ -1,0 +1,69 @@
+﻿@model UserProfileViewModel
+
+@{
+    ViewData["Title"] = "UserProfile Edit";
+}
+
+<h1>UserProfile Edit</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="create" asp-antiforgery="true">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(user => user.UserId)
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DirectionId" class="control-label"></label>
+                <input asp-for="DirectionId" class="form-control" />
+                <span asp-validation-for="DirectionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MathScore" class="control-label"></label>
+                <input asp-for="MathScore" class="form-control" />
+                <span asp-validation-for="MathScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UniversityAverageScore" class="control-label"></label>
+                <input asp-for="UniversityAverageScore" class="form-control" />
+                <span asp-validation-for="UniversityAverageScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobilePhone" class="control-label"></label>
+                <input asp-for="MobilePhone" class="form-control" />
+                <span asp-validation-for="MobilePhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skype" class="control-label"></label>
+                <input asp-for="Skype" class="form-control" />
+                <span asp-validation-for="Skype" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                @Html.PartialAsync("_BackToList", new BackToListViewModel { Action = "Index", Controller = "UserProfile" })
+            </div>
+        </form>
+    </div>
+</div>

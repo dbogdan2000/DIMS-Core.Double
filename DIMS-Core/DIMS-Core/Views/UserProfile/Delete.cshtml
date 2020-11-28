@@ -1,0 +1,15 @@
+﻿@model UserProfileViewModel
+
+@{
+    ViewData["Title"] = "UserProfile Delete";
+}
+
+<h1>UserProfile Delete</h1>
+<div class="row">
+    <div asp-for="FullName" class="control-label"></div>
+    <div asp-for="Email" class="control-label"></div>
+    <form asp-action="delete" asp-antiforgery="true" method="post">
+        @Html.HiddenFor(user => user.UserId)
+        <input type="submit" value="Delete" />
+    </form>
+</div>

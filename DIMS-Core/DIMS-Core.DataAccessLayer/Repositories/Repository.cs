@@ -7,71 +7,79 @@ using System.Threading.Tasks;
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
     /// <summary>
+    /// TODO: Task #1
+    /// Implement all methods
     /// Generic Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext databaseContext;
-        protected readonly DbSet<TEntity> currentSet;
+        private readonly DbContext _context;
+        protected readonly DbSet<TEntity> _set;
 
         public Repository(DbContext context)
         {
-            databaseContext = context;
-            currentSet = context.Set<TEntity>();
-        }
-
-        public async Task CreateAsync(TEntity entity)
-        {
-            if (entity is null)
-            {
-                return;
-            }
-
-            await currentSet.AddAsync(entity);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            if (id <= 0)
-            {
-                return;
-            }
-
-            var entity = await GetByIdAsync(id);
-
-            if (entity is null)
-            {
-                return;
-            }
-
-            currentSet.Remove(entity);
+            _context = context;
+            _set = context.Set<TEntity>();
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return currentSet.AsNoTracking();
+            throw new NotImplementedException();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public Task<TEntity> GetById(int id)
         {
-            if (id <= 0)
+            if (id == 0)
             {
-                return null;
+                // TODO: Task #3
+                // Create custom exception for invalid arguments
+                // based on abstract class BaseException
+                // throw new AnyException(string paramName);
             }
 
-            var entity = await currentSet.FindAsync(id);
+            // TODO: type must be adjusted to entity type accordingly
+            object objectFromDB = null;
 
-            return entity;
+            if (objectFromDB is null)
+            {
+                // TODO: Task #4
+                // Create custom exception for non existed object in database
+                // based on abstract class BaseException
+                // throw new AnyException(string methodName, string message);
+            }
+
+            // RECOMMEND: It's better to create a helper static class for errors instead of throwing them
+            // Ask us if you stucked and it looks ridiculous for you
+
+            throw new NotImplementedException();
         }
 
-        public void Update(TEntity entity)
+        public async Task<TEntity> Create(TEntity entity)
         {
-            databaseContext.Entry(entity).State = EntityState.Modified;
+            throw new NotImplementedException();
+
+            // TODO: comment out it when implement other logic
+            // await _context.SaveChangesAsync();
+        }
+
+        public async Task<TEntity> Update(TEntity entity)
+        {
+            throw new NotImplementedException();
+
+            // TODO: comment out it when implement other logic
+            // await _context.SaveChangesAsync();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+
+            // TODO: comment out it when implement other logic
+            // await _context.SaveChangesAsync();
         }
 
         #region Disposable
-
         private bool disposedValue;
 
         protected virtual void Dispose(bool disposing)
@@ -80,7 +88,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             {
                 if (disposing)
                 {
-                    databaseContext.Dispose();
+                    _context.Dispose();
                 }
 
                 disposedValue = true;
@@ -97,7 +105,6 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
-
         #endregion Disposable
     }
 }

@@ -19,11 +19,6 @@ namespace DIMS_Core.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult CheckLogger()
         {
             _logger.LogTrace("Trace log message.");

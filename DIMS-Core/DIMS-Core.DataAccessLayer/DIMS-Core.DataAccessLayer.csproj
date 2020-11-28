@@ -1,21 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseNETCoreGenerator>true</UseNETCoreGenerator>
     <RootNamespace>DIMS_Core.DataAccessLayer</RootNamespace>
+    <UserSecretsId>a976e32f-9ee7-491c-a12d-c0d658c5292c</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <COMReference Include="mscoree.dll">
-      <Guid>5477469e-83b1-11d2-8b49-00a0c9b7c9c4</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>4</VersionMinor>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Lcid>0</Lcid>
-      <Isolated>false</Isolated>
-    </COMReference>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
@@ -34,10 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DIMS-Core.Common\DIMS-Core.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
