@@ -1,7 +1,7 @@
-﻿using DIMS_Core.Models;
+﻿using System.Diagnostics;
+using DIMS_Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 
 namespace DIMS_Core.Controllers
 {
@@ -19,6 +19,10 @@ namespace DIMS_Core.Controllers
             return View();
         }
 
+        /// <summary>
+        /// You can check look examples of logger events if you will run the action.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult CheckLogger()
         {
             _logger.LogTrace("Trace log message.");
@@ -31,10 +35,15 @@ namespace DIMS_Core.Controllers
             return RedirectToAction("Index");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0,
+                       Location = ResponseCacheLocation.None,
+                       NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel
+                        {
+                            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+                        });
         }
     }
 }

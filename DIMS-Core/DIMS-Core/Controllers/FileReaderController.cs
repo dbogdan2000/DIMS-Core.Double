@@ -1,27 +1,29 @@
-﻿using AutoMapper;
-using DIMS_Core.BusinessLayer.Models;
-using DIMS_Core.Common.Enums;
-using DIMS_Core.Models;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Serialization;
+using AutoMapper;
+using DIMS_Core.Common.Enums;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace DIMS_Core.Controllers
 {
     [Route("file")]
     public class FileReaderController : BaseController
     {
-        private Dictionary<FileExtensions, string> extensions = new Dictionary<FileExtensions, string>
-        { { FileExtensions.JSON, ".json" }, { FileExtensions.XML, ".xml" } };
+        private readonly Dictionary<FileExtensions, string> _extensions =
+            new Dictionary<FileExtensions, string>
+            {
+                {
+                    FileExtensions.JSON, ".json"
+                },
+                {
+                    FileExtensions.XML, ".xml"
+                }
+            };
 
-        public FileReaderController(IMapper mapper):base(mapper)
+        public FileReaderController(IMapper mapper, ILogger<FileReaderController> logger) : base(mapper, logger)
         {
-
         }
 
         /// <summary>
@@ -29,7 +31,6 @@ namespace DIMS_Core.Controllers
         /// objects in submitted file: users
         /// </summary>
         /// <returns></returns>
-
         [HttpPost("users-submit")]
         public async Task<IActionResult> SubmitUsers()
         {
@@ -44,20 +45,24 @@ namespace DIMS_Core.Controllers
             {
                 string output = null /*stream result*/;
 
-                if (file.Name.EndsWith(extensions[FileExtensions.JSON]))
+                if (file.Name.EndsWith(_extensions[FileExtensions.JSON]))
                 {
                     // TODO: Task # 8
                     // You need to implement JSON deserialization. You can use JsonConvert for example.
                 }
 
-                if (file.Name.EndsWith(extensions[FileExtensions.XML]))
+                if (file.Name.EndsWith(_extensions[FileExtensions.XML]))
                 {
                     // TODO: Task # 9
                     // You need to implement XML deserialization. You can use XmlSerializer for example.
                 }
             }
 
-            return Json(new { Message = "Data was successfully desirialized and saved", StatusCode = 201 });
+            return Json(new
+                        {
+                            Message = "Data was successfully deserialized and saved",
+                            StatusCode = 201
+                        });
         }
 
         /// <summary>
@@ -65,7 +70,6 @@ namespace DIMS_Core.Controllers
         /// objects in submitted file: tasks
         /// </summary>
         /// <returns></returns>
-
         [HttpPost("tasks-submit")]
         public async Task<IActionResult> SubmitTasks()
         {
@@ -74,7 +78,11 @@ namespace DIMS_Core.Controllers
 
             // You have to use correct model here in deserialization
 
-            return Json(new { Message = "Data was successfully desirialized and saved", StatusCode = 201 });
+            return Json(new
+                        {
+                            Message = "Data was successfully desirialized and saved",
+                            StatusCode = 201
+                        });
         }
     }
 }

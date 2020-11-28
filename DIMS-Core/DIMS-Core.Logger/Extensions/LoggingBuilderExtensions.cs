@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using System;
 
 namespace DIMS_Core.Logger.Extensions
 {
@@ -12,12 +12,13 @@ namespace DIMS_Core.Logger.Extensions
             logging.ClearProviders(); //clear default asp.net provider
 
             var configBuilder = new ConfigurationBuilder()
-                .AddJsonFile(configFileName)
-                .Build();
+                                .AddJsonFile(configFileName)
+                                .Build();
 
             var config = configBuilder?.GetSection("Nlog");
 
-            if (config is null || !config.Exists())
+            if (config is null
+                || !config.Exists())
             {
                 throw new Exception("Section NLog wasn't found.");
             }

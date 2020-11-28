@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models;
 using DIMS_Core.BusinessLayer.Services;
 using DIMS_Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace DIMS_Core.Controllers
 {
@@ -15,7 +16,11 @@ namespace DIMS_Core.Controllers
         private readonly IUserProfileService _userProfileService;
         private readonly VUserProfileService _vUserProfileService;
 
-        public UserProfileController(IMapper mapper, IUserProfileService userProfileService, VUserProfileService vUserProfileService) : base(mapper)
+        public UserProfileController(
+            IMapper mapper,
+            IUserProfileService userProfileService,
+            VUserProfileService vUserProfileService,
+            ILogger<UserProfileController> logger) : base(mapper, logger)
         {
             _userProfileService = userProfileService;
             _vUserProfileService = vUserProfileService;

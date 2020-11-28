@@ -1,10 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models.Account;
 using DIMS_Core.Identity.Entities;
 using DIMS_Core.Identity.Services;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 
 namespace DIMS_Core.BusinessLayer.Services
 {
@@ -16,7 +16,10 @@ namespace DIMS_Core.BusinessLayer.Services
 
         public async Task<SignInResult> SignInAsync(SignInModel model)
         {
-            var result = await _unitOfWork.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+            var result = await _unitOfWork.SignInManager.PasswordSignInAsync(model.Email,
+                                                                             model.Password,
+                                                                             model.RememberMe,
+                                                                             false);
 
             return result;
         }
