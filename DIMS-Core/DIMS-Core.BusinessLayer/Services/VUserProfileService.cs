@@ -1,26 +1,27 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models;
 using DIMS_Core.DataAccessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DIMS_Core.BusinessLayer.Services
 {
     public class VUserProfileService : IVUserProfileService
     {
-        private bool disposedValue;
+        private bool _disposedValue;
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+
         public VUserProfileService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
         public async Task<IEnumerable<VUserProfileModel>> GetAll()
         {
             var vUserProfileEntities = _unitOfWork.VUserProfileRepository.GetAll();
@@ -32,20 +33,20 @@ namespace DIMS_Core.BusinessLayer.Services
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
                     _unitOfWork.Dispose();
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
     }

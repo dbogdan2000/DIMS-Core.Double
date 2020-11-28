@@ -25,31 +25,35 @@ namespace DIMS_Core.BusinessLayer.Services
 
         public async Task<DirectionModel> GetById(int id)
         {
-            var direction = await _unitOfWork.DirectionRepository.GetById(id);
+            var directionEntity = await _unitOfWork.DirectionRepository.GetById(id);
 
-            return _mapper.Map<DirectionModel>(direction);
+            return _mapper.Map<DirectionModel>(directionEntity);
         }
 
         public async Task<DirectionModel> Update(DirectionModel direction)
         {
             var directionEntity = await _unitOfWork.DirectionRepository.GetById(direction.DirectionId);
-            var updatedDirectionEntity = await _unitOfWork.DirectionRepository.Update(directionEntity);
+            
+            await _unitOfWork.DirectionRepository.Update(directionEntity);
+            await _unitOfWork.SaveChanges();
 
-            return _mapper.Map<DirectionModel>(updatedDirectionEntity);
+            return _mapper.Map<DirectionModel>(directionEntity);
         }
 
         public async Task<DirectionModel> Create(DirectionModel directionModel)
         {
-            var direction = _mapper.Map<Direction>(directionModel);
+            var directionEntity = _mapper.Map<Direction>(directionModel);
 
-            var createdDirectionEntity = await _unitOfWork.DirectionRepository.Create(direction);
+            await _unitOfWork.DirectionRepository.Create(directionEntity);
+            await _unitOfWork.SaveChanges();
 
-            return _mapper.Map<DirectionModel>(createdDirectionEntity);
+            return _mapper.Map<DirectionModel>(directionEntity);
         }
 
         public async Task Delete(int id)
         {
             await _unitOfWork.DirectionRepository.Delete(id);
+            await _unitOfWork.SaveChanges();
         }
 
         /// <summary>

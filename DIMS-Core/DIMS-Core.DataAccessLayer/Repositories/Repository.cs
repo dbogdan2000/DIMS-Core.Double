@@ -55,28 +55,19 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<TEntity> Create(TEntity entity)
+        public async Task Create(TEntity entity)
         {
             throw new NotImplementedException();
-
-            // TODO: comment out it when implement other logic
-            // await _context.SaveChangesAsync();
         }
 
-        public async Task<TEntity> Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
             throw new NotImplementedException();
-
-            // TODO: comment out it when implement other logic
-            // await _context.SaveChangesAsync();
         }
 
         public Task Delete(int id)
         {
             throw new NotImplementedException();
-
-            // TODO: comment out it when implement other logic
-            // await _context.SaveChangesAsync();
         }
 
         #region Disposable

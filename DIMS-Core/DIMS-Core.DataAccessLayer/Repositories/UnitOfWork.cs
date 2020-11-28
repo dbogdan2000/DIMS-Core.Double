@@ -26,6 +26,11 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             _context = context;
         }
 
+        public async Task SaveChanges()
+        {
+            await _context.SaveChangesAsync();
+        }
+
         #region Disposable
         private bool disposed;
 
