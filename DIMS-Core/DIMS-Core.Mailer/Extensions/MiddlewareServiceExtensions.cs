@@ -8,7 +8,7 @@ namespace DIMS_Core.Mailer.Extensions
     {
         public static IServiceCollection AddMailerDependencies(this IServiceCollection services)
         {
-            services.AddTransient<ISender, Sender>();
+            services.AddSingleton<ISender, Sender>();
 
             return services;
         }

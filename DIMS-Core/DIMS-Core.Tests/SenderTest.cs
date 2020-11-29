@@ -29,7 +29,7 @@ namespace DIMS_Core.Tests
                 return;
             }
 
-            var result = await _sender.SendMessageAsync(subject, body, email);
+            var result = await _sender.SendMessage(subject, body, email);
 
             Assert.IsTrue(result);
         }
