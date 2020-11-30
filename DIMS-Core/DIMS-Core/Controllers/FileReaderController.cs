@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using DIMS_Core.Common.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DIMS_Core.Controllers
 {
@@ -59,10 +59,10 @@ namespace DIMS_Core.Controllers
             }
 
             return Json(new
-                        {
-                            Message = "Data was successfully deserialized and saved",
-                            StatusCode = 201
-                        });
+            {
+                Message = "Data was successfully deserialized and saved",
+                StatusCode = 201
+            });
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace DIMS_Core.Controllers
             // You have to use correct model here in deserialization
 
             return Json(new
-                        {
-                            Message = "Data was successfully desirialized and saved",
-                            StatusCode = 201
-                        });
+            {
+                Message = "Data was successfully desirialized and saved",
+                StatusCode = 201
+            });
         }
     }
 }
