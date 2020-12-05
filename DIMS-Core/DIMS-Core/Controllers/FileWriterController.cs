@@ -1,21 +1,18 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using FileIO = System.IO.File;
-using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using FileIO = System.IO.File;
 
 namespace DIMS_Core.Controllers
 {
     [Route("file")]
     public class FileWriterController : BaseController
     {
-        public FileWriterController(IMapper mapper, ILogger<FileWriterController> logger): base(mapper, logger)
+        public FileWriterController(IMapper mapper, ILogger<FileWriterController> logger) : base(mapper, logger)
         {
-
         }
 
         [HttpPost("users-write")]
@@ -42,7 +39,11 @@ namespace DIMS_Core.Controllers
                 streamWriter?.Close();
             }
 
-            return Json(new { Message = "Data was successfully saved", StatusCode = 201 });
+            return Json(new
+                        {
+                            Message = "Data was successfully saved",
+                            StatusCode = 201
+                        });
         }
 
         public async Task<IActionResult> TasksWriter(string data)
@@ -55,7 +56,6 @@ namespace DIMS_Core.Controllers
 
             try
             {
-
             }
             catch (Exception)
             {
@@ -63,10 +63,13 @@ namespace DIMS_Core.Controllers
             }
             finally
             {
-
             }
 
-            return Json(new { Message = "Data was successfully saved", StatusCode = 201 });
+            return Json(new
+                        {
+                            Message = "Data was successfully saved",
+                            StatusCode = 201
+                        });
         }
     }
 }

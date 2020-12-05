@@ -80,7 +80,7 @@ namespace DIMS_Core.Controllers
 
             return Json(new
                         {
-                            Message = "Data was successfully desirialized and saved",
+                            Message = "Data was successfully deserialized and saved",
                             StatusCode = 201
                         });
         }

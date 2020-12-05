@@ -16,11 +16,10 @@ namespace DIMS_Core.Controllers
         private readonly IUserProfileService _userProfileService;
         private readonly VUserProfileService _vUserProfileService;
 
-        public UserProfileController(
-            IMapper mapper,
-            IUserProfileService userProfileService,
-            VUserProfileService vUserProfileService,
-            ILogger<UserProfileController> logger) : base(mapper, logger)
+        public UserProfileController(IMapper mapper,
+                                     IUserProfileService userProfileService,
+                                     VUserProfileService vUserProfileService,
+                                     ILogger<UserProfileController> logger) : base(mapper, logger)
         {
             _userProfileService = userProfileService;
             _vUserProfileService = vUserProfileService;

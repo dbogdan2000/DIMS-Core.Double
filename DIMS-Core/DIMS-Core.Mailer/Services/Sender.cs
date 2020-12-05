@@ -27,13 +27,12 @@ namespace DIMS_Core.Mailer.Services
             _logger = logger;
         }
 
-        public async Task<bool> SendMessage(
-            string subject,
-            string body,
-            params string[] emails)
+        public async Task<bool> SendMessage(string subject,
+                                            string body,
+                                            params string[] emails)
         {
             using var smtpClient = new SmtpClient();
-            
+
             var isValid = false;
 
             smtpClient.MessageSent += (sender, e) =>
@@ -45,15 +44,11 @@ namespace DIMS_Core.Mailer.Services
                                           isValid = true;
                                       };
 
-            await smtpClient.ConnectAsync(_smtpSettings.Server,
-                                          _smtpSettings.Port,
-                                          _smtpSettings.EnableSsl);
+            await smtpClient.ConnectAsync(_smtpSettings.Server, _smtpSettings.Port, _smtpSettings.EnableSsl);
 
             await smtpClient.AuthenticateAsync(_smtpSettings.UserName, _smtpSettings.Password);
 
-            var mailMessage = GenerateMessage(subject,
-                                              body,
-                                              emails);
+            var mailMessage = GenerateMessage(subject, body, emails);
             await smtpClient.SendAsync(mailMessage);
 
             await smtpClient.DisconnectAsync(true);
@@ -61,10 +56,9 @@ namespace DIMS_Core.Mailer.Services
             return isValid;
         }
 
-        private MimeMessage GenerateMessage(
-            string subject,
-            string body,
-            params string[] to)
+        private MimeMessage GenerateMessage(string subject,
+                                            string body,
+                                            params string[] to)
         {
             var bodyBuilder = new BodyBuilder
                               {

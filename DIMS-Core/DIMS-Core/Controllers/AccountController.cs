@@ -1,18 +1,18 @@
-﻿using DIMS_Core.BusinessLayer.Interfaces;
+﻿using System.Threading.Tasks;
+using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models.Account;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace DIMS_Core.Controllers
 {
     [Route("account")]
     public class AccountController : Controller
     {
-        private readonly IUserService userService;
+        private readonly IUserService _userService;
 
         public AccountController(IUserService userService)
         {
-            this.userService = userService;
+            _userService = userService;
         }
 
         [HttpGet("login")]
@@ -30,7 +30,7 @@ namespace DIMS_Core.Controllers
                 return View(model);
             }
 
-            var result = await userService.SignInAsync(model);
+            var result = await _userService.SignInAsync(model);
 
             if (result.Succeeded)
             {
@@ -59,7 +59,7 @@ namespace DIMS_Core.Controllers
                 return View(model);
             }
 
-            var result = await userService.SignUpAsync(model);
+            var result = await _userService.SignUpAsync(model);
 
             if (result.Succeeded)
             {
@@ -79,7 +79,7 @@ namespace DIMS_Core.Controllers
         [HttpGet("logout")]
         public async Task<IActionResult> LogOut()
         {
-            await userService.SignOutAsync();
+            await _userService.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
         }
@@ -88,7 +88,7 @@ namespace DIMS_Core.Controllers
         {
             if (disposing)
             {
-                userService.Dispose();
+                _userService.Dispose();
             }
 
             base.Dispose(disposing);
