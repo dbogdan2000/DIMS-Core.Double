@@ -14,20 +14,20 @@ namespace DIMS_Core.Controllers
     public class UserProfileController : BaseController
     {
         private readonly IUserProfileService _userProfileService;
-        private readonly VUserProfileService _vUserProfileService;
+        private readonly IVUserProfileService _vUserProfileService;
 
         public UserProfileController(IMapper mapper,
                                      IUserProfileService userProfileService,
-                                     VUserProfileService vUserProfileService,
+                                     IVUserProfileService vUserProfileService,
                                      ILogger<UserProfileController> logger) : base(mapper, logger)
         {
             _userProfileService = userProfileService;
             _vUserProfileService = vUserProfileService;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var readOnlyModels = _vUserProfileService.GetAll();
+            var readOnlyModels = await _vUserProfileService.GetAll();
             var viewModels = _mapper.Map<IEnumerable<VUserProfileViewModel>>(readOnlyModels);
 
             return View(viewModels);
