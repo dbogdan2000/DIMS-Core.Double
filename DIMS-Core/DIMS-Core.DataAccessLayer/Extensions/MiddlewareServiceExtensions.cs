@@ -12,6 +12,9 @@ namespace DIMS_Core.DataAccessLayer.Extensions
         public static IServiceCollection AddDatabaseDependencies(this IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IRepository<Direction>, DirectionRepository>();
+            services.AddTransient<IRepository<UserProfile>, UserProfileRepository>();
+            services.AddTransient<IReadOnlyRepository<VUserProfile>, VUserProfileRepository>();
 
             return services;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
-    internal class VUserProfileRepository : IReadOnlyRepository<VUserProfile>
+    public class VUserProfileRepository : IReadOnlyRepository<VUserProfile>
     {
         private DIMSCoreContext _context;
 

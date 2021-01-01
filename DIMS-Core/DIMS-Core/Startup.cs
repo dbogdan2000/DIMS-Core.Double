@@ -20,11 +20,6 @@ namespace DIMS_Core
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //var builder = new SqlConnectionStringBuilder(
-            //        Configuration.GetConnectionString("DIMSDatabase"));
-            //builder.Password = Configuration["DB_PASS"];
-            //builder.UserID = Configuration["DB_USERID"];
-
             services.AddControllersWithViews();
 
             services.AddCustomSolutionConfigs(Configuration, Assembly.GetExecutingAssembly());

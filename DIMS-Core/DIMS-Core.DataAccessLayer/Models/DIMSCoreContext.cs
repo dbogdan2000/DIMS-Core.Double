@@ -81,7 +81,7 @@ namespace DIMS_Core.DataAccessLayer.Models
             {
                 entity.HasNoKey();
 
-                entity.ToView("vUserProfile");
+                entity.ToView("vUserProfiles");
 
                 entity.Property(e => e.Address).HasMaxLength(120);
 
