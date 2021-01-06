@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Services;
@@ -14,10 +15,10 @@ namespace DIMS_Core.BusinessLayer.Extensions
     {
         public static IServiceCollection AddDependencyInjections(this IServiceCollection services)
         {
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IUserProfileService, UserProfileService>();
-            services.AddTransient<IDirectionService, DirectionService>();
-            services.AddTransient<IVUserProfileService, VUserProfileService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserProfileService, UserProfileService>();
+            services.AddScoped<IDirectionService, DirectionService>();
+            services.AddScoped<IVUserProfileService, VUserProfileService>();
 
             services.AddDatabaseDependencies()
                     .AddIdentityDependencies()
@@ -28,7 +29,12 @@ namespace DIMS_Core.BusinessLayer.Extensions
 
         public static IServiceCollection AddAutomapperProfiles(this IServiceCollection services, params Assembly[] otherMapperAssemblies)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            var assemblies = new List<Assembly>(otherMapperAssemblies)
+                             {
+                                 Assembly.GetExecutingAssembly()
+                             };
+            
+            services.AddAutoMapper(assemblies);
 
             return services;
         }
