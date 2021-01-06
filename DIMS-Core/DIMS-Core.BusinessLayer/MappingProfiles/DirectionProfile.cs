@@ -4,7 +4,7 @@ using DirectionEntity = DIMS_Core.DataAccessLayer.Models.Direction;
 
 namespace DIMS_Core.BusinessLayer.MappingProfiles
 {
-    class DirectionProfile : Profile
+    public class DirectionProfile : Profile
     {
         public DirectionProfile()
         {

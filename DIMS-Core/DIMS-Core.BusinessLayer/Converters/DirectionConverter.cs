@@ -1,14 +1,12 @@
-﻿using DIMS_Core.DataAccessLayer.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
+using DIMS_Core.DataAccessLayer.Models;
+using Newtonsoft.Json;
 
-namespace DIMS_Core.BusinessLayer
+namespace DIMS_Core.BusinessLayer.Converters
 {
     /// <summary>
-    /// convert int directionId into string direction name 
+    ///     Convert int directionId into string direction name
     /// </summary>
     public class DirectionConverter : JsonConverter
     {
@@ -17,32 +15,33 @@ namespace DIMS_Core.BusinessLayer
             return Type.GetTypeCode(typeToConvert) == TypeCode.Int32;
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader,
+                                        Type objectType,
+                                        object existingValue,
+                                        JsonSerializer serializer)
         {
             var directionName = reader.Value.ToString();
 
             using var dimsCoreContext = new DIMSCoreContext();
             var direction = dimsCoreContext.Directions.FirstOrDefault(x => x.Name == directionName);
 
-            if (direction != null)
-            {
-                return direction.DirectionId;
-            }
-
-            return 0;
+            return direction?.DirectionId ?? 0;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer,
+                                       object value,
+                                       JsonSerializer serializer)
         {
             var directionId = (int)value;
 
             using var dimsCoreContext = new DIMSCoreContext();
             var direction = dimsCoreContext.Directions.FirstOrDefault(x => x.DirectionId == directionId);
 
-            if(direction != null)
+            if (direction != null)
             {
                 writer.WriteValue(direction.Name);
-            } else
+            }
+            else
             {
                 writer.WriteNull();
             }

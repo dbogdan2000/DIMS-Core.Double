@@ -34,21 +34,20 @@ namespace DIMS_Core.BusinessLayer.Services
         {
             var userProfileEntity = await _unitOfWork.UserProfileRepository.GetById(userProfile.UserId);
 
-            await _unitOfWork.UserProfileRepository.Update(_mapper.Map(userProfile, userProfileEntity));
+            var updatedEntity = _unitOfWork.UserProfileRepository.Update(_mapper.Map(userProfile, userProfileEntity));
             await _unitOfWork.SaveChanges();
 
-            return _mapper.Map<UserProfileModel>(userProfileEntity);
+            return _mapper.Map<UserProfileModel>(updatedEntity);
         }
 
         public async Task<UserProfileModel> Create(UserProfileModel userProfileModel)
         {
             var userProfileEntity = _mapper.Map<UserProfile>(userProfileModel);
 
-            await _unitOfWork.UserProfileRepository.Create(userProfileEntity);
-
+            var createdEntity = await _unitOfWork.UserProfileRepository.Create(userProfileEntity);
             await _unitOfWork.SaveChanges();
 
-            return _mapper.Map<UserProfileModel>(userProfileEntity);
+            return _mapper.Map<UserProfileModel>(createdEntity);
         }
 
         public async Task Delete(int id)
@@ -58,7 +57,7 @@ namespace DIMS_Core.BusinessLayer.Services
         }
 
         /// <summary>
-        /// This method check models equality by operator == overloading
+        ///     This method check models equality by operator == overloading
         /// </summary>
         /// <param name="userModel1"></param>
         /// <param name="userModel2"></param>
@@ -69,7 +68,7 @@ namespace DIMS_Core.BusinessLayer.Services
         }
 
         /// <summary>
-        /// This method check models inequality by operator != overloading
+        ///     This method check models inequality by operator != overloading
         /// </summary>
         /// <param name="userModel1"></param>
         /// <param name="userModel2"></param>

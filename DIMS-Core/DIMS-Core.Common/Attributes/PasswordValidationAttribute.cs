@@ -8,7 +8,7 @@ namespace DIMS_Core.Common.Attributes
     /// using regular expressions
     /// rules: min length 6 symbols, at least 2 upper case letters, at least 2 lower case letters
     /// </summary>
-    class PasswordValidationAttribute : ValidationAttribute
+    public class PasswordValidationAttribute : ValidationAttribute
     {
     }
 }

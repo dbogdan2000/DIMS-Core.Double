@@ -1,6 +1,7 @@
 ﻿using DIMS_Core.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
+using DIMS_Core.Identity.Interfaces;
 
 namespace DIMS_Core.Identity.Services
 {
@@ -17,29 +18,31 @@ namespace DIMS_Core.Identity.Services
 
         #region Disposable
 
-        private bool disposed;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (_disposed)
             {
-                if (disposing)
-                {
-                    UserManager.Dispose();
-                }
-
-                disposed = true;
+                return;
             }
+
+            if (disposing)
+            {
+                UserManager.Dispose();
+            }
+
+            _disposed = true;
         }
 
         ~IdentityUnitOfWork()
         {
-            Dispose(disposing: false);
+            Dispose(false);
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 

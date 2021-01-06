@@ -16,12 +16,12 @@ namespace DIMS_Core.Mailer.Services
             + "<div><img src=\"https://i.ibb.co/9tSLsd6/logo-name.png\" style=\"margin-top:26px; width:250px !important; height:100px !important;\"/>"
             + "</div>";
 
-        private readonly SmtpSettings _smtpSettings;
         private readonly ILogger _logger;
+        private readonly SmtpSettings _smtpSettings;
 
         public Sender(ILogger logger)
         {
-            var config = new MailerCofiguration();
+            var config = new MailerConfiguration();
 
             _smtpSettings = config.SmtpSettings;
             _logger = logger;
@@ -45,12 +45,11 @@ namespace DIMS_Core.Mailer.Services
                                       };
 
             await smtpClient.ConnectAsync(_smtpSettings.Server, _smtpSettings.Port, _smtpSettings.EnableSsl);
-
             await smtpClient.AuthenticateAsync(_smtpSettings.UserName, _smtpSettings.Password);
 
             var mailMessage = GenerateMessage(subject, body, emails);
+            
             await smtpClient.SendAsync(mailMessage);
-
             await smtpClient.DisconnectAsync(true);
 
             return isValid;

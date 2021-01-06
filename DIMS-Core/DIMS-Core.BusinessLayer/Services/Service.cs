@@ -1,18 +1,16 @@
 ﻿using System;
 using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
-using DIMS_Core.Common.DI;
 using DIMS_Core.DataAccessLayer.Interfaces;
 
 namespace DIMS_Core.BusinessLayer.Services
 {
     public abstract class Service : IService
     {
+        protected readonly IMapper _mapper;
         protected readonly IUnitOfWork _unitOfWork;
 
-        protected readonly IMapper _mapper;
-
-        public Service(IUnitOfWork unitOfWork, IMapper mapper)
+        protected Service(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -20,30 +18,29 @@ namespace DIMS_Core.BusinessLayer.Services
 
         #region Disposable
 
-        private bool disposed;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (_disposed)
             {
-                if (disposing)
-                {
-                    _unitOfWork.Dispose();
-                }
-
-                disposed = true;
+                return;
             }
+
+            _unitOfWork.Dispose();
+
+            _disposed = true;
         }
 
         ~Service()
         {
-            Dispose(disposing: false);
+            Dispose(false);
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
-            System.GC.SuppressFinalize(this);
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         #endregion Disposable

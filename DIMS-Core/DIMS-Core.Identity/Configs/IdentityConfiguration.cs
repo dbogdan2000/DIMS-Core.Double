@@ -5,7 +5,7 @@ namespace DIMS_Core.Identity.Configs
 {
     public class IdentityConfiguration : BaseCustomConfiguration
     {
-        private const string fileName = "identitysettings.json";
+        private const string FileName = "identitysettings.json";
 
         public string ConnectionString => GetSection("ConnectionString");
 
@@ -13,7 +13,7 @@ namespace DIMS_Core.Identity.Configs
         {
             var builder = new ConfigurationBuilder();
 
-            return builder.AddJsonFile(fileName)
+            return builder.AddJsonFile(FileName)
                 .Build();
         }
     }

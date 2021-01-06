@@ -3,7 +3,7 @@ using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models.Account;
 using DIMS_Core.Identity.Entities;
-using DIMS_Core.Identity.Services;
+using DIMS_Core.Identity.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
 namespace DIMS_Core.BusinessLayer.Services

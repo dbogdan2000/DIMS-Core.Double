@@ -9,9 +9,9 @@ namespace DIMS_Core.DataAccessLayer.Interfaces
 
         Task<TEntity> GetById(int id);
 
-        Task Create(TEntity entity);
+        Task<TEntity> Create(TEntity entity);
 
-        Task Update(TEntity entity);
+        TEntity Update(TEntity entity);
 
         Task Delete(int id);
     }

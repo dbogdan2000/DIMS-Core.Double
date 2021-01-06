@@ -11,10 +11,10 @@ namespace DIMS_Core.BusinessLayer.Services
 {
     public class VUserProfileService : IVUserProfileService
     {
-        private bool _disposedValue;
+        private readonly IMapper _mapper;
 
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private bool _disposed;
 
         public VUserProfileService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -31,23 +31,22 @@ namespace DIMS_Core.BusinessLayer.Services
             return await vUserProfiles.ToListAsync();
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposedValue)
-            {
-                if (disposing)
-                {
-                    _unitOfWork.Dispose();
-                }
-
-                _disposedValue = true;
-            }
-        }
-
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            _unitOfWork.Dispose();
+
+            _disposed = true;
         }
     }
 }

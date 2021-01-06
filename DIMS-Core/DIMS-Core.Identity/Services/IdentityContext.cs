@@ -11,12 +11,13 @@ namespace DIMS_Core.Identity.Services
         {
         }
 
-        protected IdentityContext()
-        {
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (optionsBuilder.IsConfigured)
+            {
+                return;
+            }
+
             var configs = new IdentityConfiguration();
 
             optionsBuilder.UseSqlServer(configs.ConnectionString);

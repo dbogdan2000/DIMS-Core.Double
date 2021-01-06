@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace DIMS_Core.Mailer.Configs
 {
-    internal class MailerCofiguration : BaseCustomConfiguration
+    internal class MailerConfiguration : BaseCustomConfiguration
     {
-        private const string fileName = "mailersettings.json";
+        private const string FileName = "mailersettings.json";
 
         private SmtpSettings _smtpSettings;
 
@@ -17,7 +17,7 @@ namespace DIMS_Core.Mailer.Configs
             var builder = new ConfigurationBuilder();
 
             return builder
-                .AddJsonFile(fileName)
+                .AddJsonFile(FileName)
                 .Build();
         }
     }

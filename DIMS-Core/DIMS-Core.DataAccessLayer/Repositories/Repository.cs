@@ -12,12 +12,13 @@ namespace DIMS_Core.DataAccessLayer.Repositories
     /// Generic Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
+    public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity>
+        where TEntity : class
     {
         private readonly DbContext _context;
         protected readonly DbSet<TEntity> _set;
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             _context = context;
             _set = context.Set<TEntity>();
@@ -55,12 +56,12 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task Create(TEntity entity)
+        public async Task<TEntity> Create(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             throw new NotImplementedException();
         }
@@ -71,31 +72,32 @@ namespace DIMS_Core.DataAccessLayer.Repositories
         }
 
         #region Disposable
-        private bool disposedValue;
+
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (_disposed)
             {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-
-                disposedValue = true;
+                return;
             }
+
+            _context.Dispose();
+
+            _disposed = true;
         }
 
         ~Repository()
         {
-            Dispose(disposing: false);
+            Dispose(false);
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         #endregion Disposable
     }
 }

@@ -5,15 +5,15 @@ namespace DIMS_Core.Logger.Extensions
 {
     public static class WebHostBuilderExtensions
     {
-        private const string defaultConfigFileName = "nlogconfig.json";
+        private const string DefaultConfigFileName = "nlogconfig.json";
 
-        public static IWebHostBuilder UseCustomNLog(this IWebHostBuilder builder, string configFileName = defaultConfigFileName)
+        public static IWebHostBuilder UseCustomNLog(this IWebHostBuilder builder, string configFileName = DefaultConfigFileName)
         {
             return builder.ConfigureLogging(logging =>
-            {
-                logging.ConfigureNlogByJson(configFileName);
-            })
-            .UseNLog();
+                                            {
+                                                logging.ConfigureNlogByJson(configFileName);
+                                            })
+                          .UseNLog();
         }
     }
 }

@@ -32,31 +32,32 @@ namespace DIMS_Core.DataAccessLayer.Repositories
         }
 
         #region Disposable
-        private bool disposed;
+
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (_disposed)
             {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-
-                disposed = true;
+                return;
             }
+
+            _context.Dispose();
+
+            _disposed = true;
         }
 
         ~UnitOfWork()
         {
-            Dispose(disposing: false);
+            Dispose(false);
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         #endregion Disposable
     }
 }

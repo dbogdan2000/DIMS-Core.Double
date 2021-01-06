@@ -8,7 +8,7 @@ namespace DIMS_Core.Common.Services
     {
         public IConfiguration Configuration { get; }
 
-        public BaseCustomConfiguration()
+        protected BaseCustomConfiguration()
         {
             Configuration = BuildConfiguration();
         }

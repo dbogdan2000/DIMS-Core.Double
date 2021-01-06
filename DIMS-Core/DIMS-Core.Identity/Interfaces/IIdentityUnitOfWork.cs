@@ -1,8 +1,8 @@
-﻿using DIMS_Core.Identity.Entities;
+﻿using System;
+using DIMS_Core.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
-using System;
 
-namespace DIMS_Core.Identity.Services
+namespace DIMS_Core.Identity.Interfaces
 {
     public interface IIdentityUnitOfWork : IDisposable
     {
