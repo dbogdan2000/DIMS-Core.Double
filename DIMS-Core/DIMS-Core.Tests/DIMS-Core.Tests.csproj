@@ -1,10 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>DIMS_Core.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
+
+    <LangVersion>default</LangVersion>
+
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
