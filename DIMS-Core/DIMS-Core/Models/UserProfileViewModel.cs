@@ -1,15 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using DIMS_Core.BusinessLayer.Converters;
 using DIMS_Core.Common.Enums;
-using Newtonsoft.Json;
 
 namespace DIMS_Core.Models
 {
     /// <summary>
     ///     TODO: Task 18
-    ///     You need to add serialization attributes from  Newtonsoft.Json package
-    ///     https://www.newtonsoft.com/
+    ///     You need to add serialization attributes from  System.Text.Json package
     /// </summary>
     public class UserProfileViewModel
     {
@@ -21,7 +20,7 @@ namespace DIMS_Core.Models
         public string FullName { get; set; }
 
         [Required]
-        [JsonProperty("Your direction")]
+        [JsonPropertyName("Your direction")]
 
         // TODO: Task 19
         // You need to review custom DirectionConverter realization

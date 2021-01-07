@@ -1,49 +1,57 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using DIMS_Core.DataAccessLayer.Models;
-using Newtonsoft.Json;
 
 namespace DIMS_Core.BusinessLayer.Converters
 {
     /// <summary>
     ///     Convert int directionId into string direction name
     /// </summary>
-    public class DirectionConverter : JsonConverter
+    public class DirectionConverter : JsonConverter<int>
     {
-        public override bool CanConvert(Type typeToConvert)
+        /// <summary>
+        ///     This method need for reading json and convert to c# object
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="typeToConvert"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public override int Read(ref Utf8JsonReader reader,
+                                 Type typeToConvert,
+                                 JsonSerializerOptions options)
         {
-            return Type.GetTypeCode(typeToConvert) == TypeCode.Int32;
-        }
+            var directionName = reader.GetString();
 
-        public override object ReadJson(JsonReader reader,
-                                        Type objectType,
-                                        object existingValue,
-                                        JsonSerializer serializer)
-        {
-            var directionName = reader.Value.ToString();
-
-            using var dimsCoreContext = new DIMSCoreContext();
-            var direction = dimsCoreContext.Directions.FirstOrDefault(x => x.Name == directionName);
+            using var context = new DIMSCoreContext();
+            var direction = context.Directions.FirstOrDefault(x => x.Name == directionName);
 
             return direction?.DirectionId ?? 0;
         }
 
-        public override void WriteJson(JsonWriter writer,
-                                       object value,
-                                       JsonSerializer serializer)
+        /// <summary>
+        ///     This method need for reading c# object and convert to json
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="value"></param>
+        /// <param name="options"></param>
+        public override void Write(Utf8JsonWriter writer,
+                                   int value,
+                                   JsonSerializerOptions options)
         {
-            var directionId = (int)value;
+            var directionId = value;
 
-            using var dimsCoreContext = new DIMSCoreContext();
-            var direction = dimsCoreContext.Directions.FirstOrDefault(x => x.DirectionId == directionId);
+            using var context = new DIMSCoreContext();
+            var direction = context.Directions.FirstOrDefault(x => x.DirectionId == directionId);
 
             if (direction != null)
             {
-                writer.WriteValue(direction.Name);
+                writer.WriteStringValue(direction.Name);
             }
             else
             {
-                writer.WriteNull();
+                writer.WriteNullValue();
             }
         }
     }
