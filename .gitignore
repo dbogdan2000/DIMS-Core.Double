@@ -351,3 +351,8 @@ MigrationBackup/
 
 # Rider settings folder
 .idea/
+
+DIMS-Core/DIMS-Core/database.json
+DIMS-Core/DIMS-Core.Identity/identitysettings.json
+DIMS-Core/DIMS-Core.Logger/nlogconfig.json
+DIMS-Core/DIMS-Core.Mailer/mailersettings.json
