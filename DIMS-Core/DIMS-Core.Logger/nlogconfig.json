@@ -1,3 +1,5 @@
+// https://nlog-project.org/config/?tab=layout-renderers&search=package:nlog.web.aspnetcore - config description
+// https://nlog-project.org/config/?tab=layout-renderers - layout variables
 {
     "NLog": {
         "ThrowConfigExceptions": true,
