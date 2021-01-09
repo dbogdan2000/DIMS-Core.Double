@@ -1,4 +1,5 @@
-﻿using DIMS_Core.Identity.Configs;
+﻿using System.Reflection;
+using DIMS_Core.Identity.Configs;
 using DIMS_Core.Identity.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace DIMS_Core.Identity.Services
 {
     public class IdentityContext : IdentityDbContext<User, Role, int>
     {
-        public IdentityContext(DbContextOptions options) : base(options)
+        public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
         {
         }
 
@@ -21,6 +22,13 @@ namespace DIMS_Core.Identity.Services
             var configs = new IdentityConfiguration();
 
             optionsBuilder.UseSqlServer(configs.ConnectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

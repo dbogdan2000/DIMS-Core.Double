@@ -1,0 +1,28 @@
+﻿@model UserProfileViewModel
+
+@{
+    ViewBag.Title = Model.FullName + "'s details";
+}
+
+<dl>
+    <dt>@Html.DisplayFor(q => q.FullName)</dt>
+    <dd>@Model.FullName</dd>
+    <dt>@Html.DisplayFor(q => q.Email)</dt>
+    <dd>@Model.Email</dd>
+    <dt>@Html.DisplayFor(q => q.BirthDate)</dt>
+    <dd>@Model.BirthDate</dd>
+    <dt>@Html.DisplayFor(q => q.Sex)</dt>
+    <dd>@Html.GetSexName(q => q.Sex)</dd>
+    <dt>@Html.DisplayFor(q => q.Education)</dt>
+    <dd>@Model.Education</dd>
+    <dt>@Html.DisplayFor(q => q.MathScore)</dt>
+    <dd>@Model.MathScore</dd>
+    <dt>@Html.DisplayFor(q => q.UniversityAverageScore)</dt>
+    <dd>@Model.UniversityAverageScore</dd>
+    <dt>@Html.DisplayFor(q => q.Address)</dt>
+    <dd>@Model.Address</dd>
+    <dt>@Html.DisplayFor(q => q.Skype)</dt>
+    <dd>@Model.Skype</dd>
+    <dt>@Html.DisplayFor(q => q.MobilePhone)</dt>
+    <dd>@Model.MobilePhone</dd>
+</dl>

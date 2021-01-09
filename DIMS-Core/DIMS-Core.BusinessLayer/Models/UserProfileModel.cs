@@ -1,4 +1,6 @@
 ﻿using System;
+using DIMS_Core.Common.Enums;
+
 namespace DIMS_Core.BusinessLayer.Models
 {
     public class UserProfileModel
@@ -23,7 +25,7 @@ namespace DIMS_Core.BusinessLayer.Models
 
         public double MathScore { get; set; }
 
-        public byte Sex { get; set; }
+        public SexType Sex { get; set; }
 
         public string Skype { get; set; }
 

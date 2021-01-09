@@ -1,4 +1,6 @@
 ﻿using System;
+using DIMS_Core.Common.Enums;
+
 namespace DIMS_Core.BusinessLayer.Models
 {
     public class VUserProfileModel
@@ -11,7 +13,7 @@ namespace DIMS_Core.BusinessLayer.Models
 
         public string Direction { get; set; }
 
-        public byte Sex { get; set; }
+        public SexType Sex { get; set; }
 
         public string Education { get; set; }
 

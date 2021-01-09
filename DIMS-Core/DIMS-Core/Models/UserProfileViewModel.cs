@@ -54,7 +54,7 @@ namespace DIMS_Core.Models
 
         [Required]
         // mark this field as ignored by using Json Attribute
-        public byte Sex { get; set; }
+        public SexType Sex { get; set; }
 
         [DataType(DataType.Text)]
         // mark this field as ignored by using Json Attribute
