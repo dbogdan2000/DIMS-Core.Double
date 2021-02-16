@@ -45,9 +45,4 @@
     <ProjectReference Include="..\DIMS-Core.BusinessLayer\DIMS-Core.BusinessLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\bundle\js\" />
-    <Folder Include="wwwroot\bundle\css\" />
-  </ItemGroup>
-
 </Project>
