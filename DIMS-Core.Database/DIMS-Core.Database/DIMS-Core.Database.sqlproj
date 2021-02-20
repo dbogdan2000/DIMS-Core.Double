@@ -67,6 +67,8 @@
   <ItemGroup>
     <Build Include="tables\Directions.sql" />
     <Build Include="tables\UserProfiles.sql" />
+    <Build Include="tables\Tasks.sql" />
+    <Build Include="tables\UserTasks.sql" />
     <Build Include="Views\vUserProfiles.sql" />
     <Build Include="Functions\GetFullAge.sql" />
     <None Include="Functions\TestScript.sql" />
