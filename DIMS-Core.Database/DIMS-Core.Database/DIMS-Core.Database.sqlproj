@@ -74,6 +74,8 @@
     <None Include="Functions\TestScript.sql" />
     <Build Include="Tables\TaskStates.sql" />
     <Build Include="Tables\TaskTracks.sql" />
+    <Build Include="Views\vUserProgress.sql" />
+    <Build Include="Views\vUserTracks.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SeedData\UserProfilesSeedData.sql" />
