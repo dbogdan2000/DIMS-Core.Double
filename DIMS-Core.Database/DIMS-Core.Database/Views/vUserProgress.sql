@@ -9,5 +9,5 @@
         TaskTracks.TrackDate
         FROM UserProfiles
         INNER JOIN UserTasks on UserProfiles.UserId = UserTasks.UserId
-        INNER JOIN TaskTracks on UserTasks.TaskId = TaskTracks.UserTaskId
+        INNER JOIN TaskTracks on UserTasks.UserTaskId = TaskTracks.UserTaskId
         INNER JOIN Tasks on UserTasks.TaskId = Tasks.TaskId
