@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using DIMS_Core.Common.Exceptions;
+
 
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
@@ -43,17 +45,25 @@ namespace DIMS_Core.DataAccessLayer.Repositories
 
         public async Task<TEntity> Create(TEntity entity)
         {
-            throw new NotImplementedException();
+           var create = await _set.AddAsync(entity);
+           return create.Entity;
         }
 
         public TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var update = _set.Update(entity);
+            return update.Entity;
         }
 
-        public Task Delete(int id)
+        public virtual async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _set.FindAsync(id);
+            _set.Remove(entity);
+        }
+
+        protected DatabaseFacade GetDatabaseFacade()
+        {
+            return _context.Database;
         }
 
         #region Disposable
