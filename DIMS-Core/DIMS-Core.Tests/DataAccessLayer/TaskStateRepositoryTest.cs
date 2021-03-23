@@ -1,26 +1,23 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using DIMS_Core.Common.Exceptions;
 using DIMS_Core.DataAccessLayer.Models;
-using ThreadTask = System.Threading.Tasks.Task;
-using DIMS_Core.DataAccessLayer.Repositories;
 using DIMS_Core.Tests.DataAccessLayer.Fixtures;
-using DIMS_Core.Tests.DataAccessLayer.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using ThreadTask = System.Threading.Tasks.Task;
 using Xunit;
 
-namespace DIMS_Core.Tests.DataAccessLayer
+namespace DIMS_Core.Tests.DataAccessLayer.Infrastructure
 {
-    public class DirectionRepositoryTest : IDisposable
+    public class TaskStateRepositoryTest : IDisposable
     {
-        private readonly DirectionRepositoryFixture _fixture;
+        private readonly TaskStateRepositoryFixture _fixture;
 
-        public DirectionRepositoryTest()
+        public TaskStateRepositoryTest()
         {
             //Arrange
-            _fixture = new DirectionRepositoryFixture();
+            _fixture = new TaskStateRepositoryFixture();
         }
+
         [Fact]
         public async ThreadTask GetAll_OK()
         {
@@ -36,13 +33,12 @@ namespace DIMS_Core.Tests.DataAccessLayer
         public async ThreadTask GetById_OK()
         {
             //Act
-            var result = await _fixture.Repository.GetById(_fixture.AddDirectionId);
+            var result = await _fixture.Repository.GetById(_fixture.AddStateId);
 
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(_fixture.AddDirectionId, result.DirectionId);
-            Assert.Equal("Added Name", result.Name);
-            Assert.Equal("Added Description", result.Description);
+            Assert.Equal(_fixture.AddStateId, result.StateId);
+            Assert.Equal("Added Name", result.StateName);
         }
         
         [Fact]
@@ -56,21 +52,19 @@ namespace DIMS_Core.Tests.DataAccessLayer
         public async ThreadTask Create_OK()
         {
             //Arrange
-            var newDirection = new Direction()
+            var newTaskState = new TaskState()
                                {
-                                   Name = "New Name",
-                                   Description = "New Description"
+                                   StateName = "New Name"
                                };
             //Act
-            var result = await _fixture.Repository.Create(newDirection);
+            var result = await _fixture.Repository.Create(newTaskState);
 
             await _fixture.Context.SaveChangesAsync();
 
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(newDirection.DirectionId, result.DirectionId);
-            Assert.Equal(newDirection.Name, result.Name);
-            Assert.Equal(newDirection.Description, result.Description);
+            Assert.Equal(newTaskState.StateId, result.StateId);
+            Assert.Equal(newTaskState.StateName, result.StateName);
         }
         
         [Fact]
@@ -85,21 +79,18 @@ namespace DIMS_Core.Tests.DataAccessLayer
         public async ThreadTask Update_OK()
         {
             
-            var updatedName = "Updated Name";
-            var updatedDescription = "Updated Description";
-            var updatedDirection = await _fixture.Context.Directions.FindAsync(_fixture.UpdateDirectionId);
-            updatedDirection.Name = updatedName;
-            updatedDirection.Description = updatedDescription;
+            var updatedStateName = "Updated Name";
+            var updatedTaskState = await _fixture.Context.TaskStates.FindAsync(_fixture.UpdateStateId);
+            updatedTaskState.StateName = updatedStateName;
 
             //Act
-            var result = _fixture.Repository.Update(updatedDirection);
+            var result = _fixture.Repository.Update(updatedTaskState);
             await _fixture.Context.SaveChangesAsync();
 
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(_fixture.UpdateDirectionId, result.DirectionId);
-            Assert.Equal(updatedName, result.Name);
-            Assert.Equal(updatedDescription, result.Description);
+            Assert.Equal(_fixture.UpdateStateId, result.StateId);
+            Assert.Equal(updatedStateName, result.StateName);
         }
         
         [Fact]
@@ -113,10 +104,10 @@ namespace DIMS_Core.Tests.DataAccessLayer
         public async ThreadTask Delete_OK()
         {
             //Act
-             await _fixture.Repository.Delete(_fixture.DeleteDirectionId);
+             await _fixture.Repository.Delete(_fixture.DeleteStateId);
 
             //Assert
-            Assert.NotNull(await _fixture.Context.Directions.FindAsync(_fixture.DeleteDirectionId));
+            Assert.NotNull(await _fixture.Context.TaskStates.FindAsync(_fixture.DeleteStateId));
         }
         
         [Fact]
@@ -125,6 +116,7 @@ namespace DIMS_Core.Tests.DataAccessLayer
             //Act, Assert
             await Assert.ThrowsAsync<ArgumentNullException>(() => _fixture.Repository.Delete(5));
         }
+        
 
         public void Dispose()
         {
