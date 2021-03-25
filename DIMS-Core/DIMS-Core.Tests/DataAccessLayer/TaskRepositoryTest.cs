@@ -1,17 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using DIMS_Core.Common.Exceptions;
 using DIMS_Core.DataAccessLayer.Models;
-using ThreadTask = System.Threading.Tasks.Task;
-using DIMS_Core.DataAccessLayer.Repositories;
 using DIMS_Core.Tests.DataAccessLayer.Fixtures;
-using DIMS_Core.Tests.DataAccessLayer.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using ThreadTask = System.Threading.Tasks.Task;
 
-namespace DIMS_Core.Tests
+namespace DIMS_Core.Tests.DataAccessLayer
 {
     
     public class TaskRepositoryTest : IDisposable
@@ -62,6 +57,7 @@ namespace DIMS_Core.Tests
         [Fact]
         public async ThreadTask Create_OK()
         {
+            //Arrange
             var newTask = new Task
                           {
                               Name = "Created Name",
@@ -95,6 +91,7 @@ namespace DIMS_Core.Tests
         [Fact]
         public async ThreadTask Update_OK()
         {
+            //Arrange
             var updatedName = "Updated Name";
             var updatedDescription = "Updated Description";
             var updatedStartDate = DateTime.Now.AddDays(3).Date;

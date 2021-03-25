@@ -3,10 +3,10 @@ using DIMS_Core.Common.Exceptions;
 using DIMS_Core.DataAccessLayer.Models;
 using DIMS_Core.Tests.DataAccessLayer.Fixtures;
 using Microsoft.EntityFrameworkCore;
-using ThreadTask = System.Threading.Tasks.Task;
 using Xunit;
+using ThreadTask = System.Threading.Tasks.Task;
 
-namespace DIMS_Core.Tests.DataAccessLayer.Infrastructure
+namespace DIMS_Core.Tests.DataAccessLayer
 {
     public class TaskStateRepositoryTest : IDisposable
     {
@@ -78,7 +78,7 @@ namespace DIMS_Core.Tests.DataAccessLayer.Infrastructure
         [Fact]
         public async ThreadTask Update_OK()
         {
-            
+            //Arrange
             var updatedStateName = "Updated Name";
             var updatedTaskState = await _fixture.Context.TaskStates.FindAsync(_fixture.UpdateStateId);
             updatedTaskState.StateName = updatedStateName;
@@ -105,9 +105,10 @@ namespace DIMS_Core.Tests.DataAccessLayer.Infrastructure
         {
             //Act
              await _fixture.Repository.Delete(_fixture.DeleteStateId);
+             await _fixture.Context.SaveChangesAsync();
 
             //Assert
-            Assert.NotNull(await _fixture.Context.TaskStates.FindAsync(_fixture.DeleteStateId));
+            Assert.DoesNotContain(await _fixture.Context.TaskStates.FindAsync(_fixture.DeleteStateId),  _fixture.Repository.GetAll());
         }
         
         [Fact]

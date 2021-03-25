@@ -84,7 +84,7 @@ namespace DIMS_Core.Tests.DataAccessLayer
         [Fact]
         public async ThreadTask Update_OK()
         {
-            
+            //Arrange
             var updatedName = "Updated Name";
             var updatedDescription = "Updated Description";
             var updatedDirection = await _fixture.Context.Directions.FindAsync(_fixture.UpdateDirectionId);
@@ -114,9 +114,10 @@ namespace DIMS_Core.Tests.DataAccessLayer
         {
             //Act
              await _fixture.Repository.Delete(_fixture.DeleteDirectionId);
+             await _fixture.Context.SaveChangesAsync();
 
             //Assert
-            Assert.NotNull(await _fixture.Context.Directions.FindAsync(_fixture.DeleteDirectionId));
+            Assert.DoesNotContain(await _fixture.Context.Directions.FindAsync(_fixture.DeleteDirectionId), _fixture.Repository.GetAll());
         }
         
         [Fact]

@@ -11,7 +11,6 @@ namespace DIMS_Core.Tests.DataAccessLayer.Fixtures
 
         public DIMSCoreContext Context { get; }
         
-
         protected BaseRepositoryFixture()
         {
             Context = ContextCreator.CreateContext();
@@ -28,7 +27,5 @@ namespace DIMS_Core.Tests.DataAccessLayer.Fixtures
 
         protected abstract TRepository CreateRepository();
         protected abstract void InitDatabase();
-        
-      
     }
 }
