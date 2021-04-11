@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Reflection;
 using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
+using DIMS_Core.BusinessLayer.Models;
 using DIMS_Core.BusinessLayer.Services;
 using DIMS_Core.DataAccessLayer.Extensions;
 using DIMS_Core.Identity.Extensions;
@@ -18,7 +19,14 @@ namespace DIMS_Core.BusinessLayer.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserProfileService, UserProfileService>();
             services.AddScoped<IDirectionService, DirectionService>();
+
+            services.AddScoped<ITaskStateService, TaskStateService>();
+            services.AddScoped<IService<TaskTrackModel>, TaskTrackService>();
+            services.AddScoped<IService<UserTaskModel>, UserTaskService>();
+
             services.AddScoped<IVUserProfileService, VUserProfileService>();
+            services.AddScoped<IReadOnlyService<VUserProgressModel>, VUserProgressService>();
+            services.AddScoped<IReadOnlyService<VUserTaskModel>, VUserTaskService>();
 
             services.AddDatabaseDependencies()
                     .AddIdentityDependencies()
